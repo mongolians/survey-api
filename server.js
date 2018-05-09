@@ -7,6 +7,7 @@ const cors = require('cors')
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 const surveyRoutes = require('./app/routes/survey_routes')
+const answerRoutes = require('./app/routes/answer_routes')
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
 const db = require('./config/db')
@@ -64,11 +65,13 @@ app.use(auth)
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
 app.use(surveyRoutes)
+app.use(answerRoutes)
 
 // run API on designated port (4741 in this case)
 app.listen(port, () => {
