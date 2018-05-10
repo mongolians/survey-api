@@ -38,6 +38,7 @@ router.get('/answers/:id', requireToken, (req, res) => {
 // CREATE
 // POST /answers
 router.post('/answers', requireToken, (req, res) => {
+  req.body.answer.owner = req.user.id
   console.log(req.body.answer.survey)
   const survey_id = new mongoose.Types.ObjectId(req.body.answer.survey)
   req.body.answer.survey = survey_id
@@ -54,9 +55,10 @@ router.post('/answers', requireToken, (req, res) => {
 // UPDATE
 // PATCH /answers/5a7db6c74d55bc51bdf39793
 router.patch('/answers/:id', requireToken, (req, res) => {
-  delete req.body.answer.owner
-
+  // delete req.body.answer.owner
+  console.log(req.body.answer)
   Answer.findById(req.params.id)
+    // .populate('survey')
     .then(handle404)
     .then(answer => {
       requireOwnership(req, answer)
@@ -69,7 +71,7 @@ router.patch('/answers/:id', requireToken, (req, res) => {
 
       return answer.update(req.body.answer)
     })
-    .then(answer => answer.populate('survey'))
+    // .then(answer => answer.populate('survey'))
     .then(() => res.sendStatus(204))
     .catch(err => handle(err, res))
 })
