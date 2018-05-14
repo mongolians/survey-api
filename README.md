@@ -104,4 +104,4 @@
   </table>
 
   <h3> Next Steps: </h3>
-  <p>Next steps in the Development process will introduce additional resources into the api.  Currently, surveys responses must use the 1-5 scale.  However, future work on the project will allow for greater user customization in survey responses. For additional information on the project and next steps, check out the client-side repo https://mongolians.github.io/survey-client/.
+  <p>Next steps in the Development process will introduce additional resources into the api.  Currently, surveys responses must use the 1-5 scale.  However, future work on the project will allow for greater user customization in survey responses. For additional information on the project and next steps, check out the client-side repo https://github.com/mongolians/survey-client.
